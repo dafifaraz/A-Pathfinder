@@ -106,7 +106,7 @@ def a_star_search(G, source, dest):
                 continue
             g = dist + G.edge[curnode][neighbor]["weight"]
             h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"]))
-        push(queue, (g + h, next(c), neighbor, ncost, curnode))
+        push(queue, (cost(g, h), next(c), neighbor, g, curnode))
     
     
 if __name__ == '__main__':
