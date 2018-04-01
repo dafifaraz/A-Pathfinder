@@ -114,15 +114,16 @@ if __name__ == '__main__':
    #Test
     nf = input("Masukkan file matriks ketetanggaan: ")
     M = getMatriks(nf)
-    print(M)
+    #print(M)
     lok = input("Masukkan file koordinat node:")
     L = getLokasi(lok)
-    print(L)
+    #print(L)
     G = getGraph(M, L)
     pos=nx.get_node_attributes(G,'pos')
     arc_weight=nx.get_edge_attributes(G,'weight')
     nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
+    plt.gca().invert_xaxis()
     plt.show()
 
     """
