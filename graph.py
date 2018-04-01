@@ -18,6 +18,22 @@ def getMatriks(namafile):
             #print(nums)
     return matriks
 
+def getLokasi(namafile):
+    with open(namafile) as file:
+        data = file.readlines()
+        data = [x.strip() for x in data]
+        matriks =[]
+        for line in data:
+            nums = line.split(" ")
+            temp = []
+            for string in nums:
+                val = float(string)
+                temp.append(val)
+            matriks.append(temp)
+            #print("Data yang diinput:\n")
+            #print(nums)
+    return matriks
+
 #Menerima input matriks ketetanggan, mengembalikan graf
 def getGraph(matriks):
     G = nx.Graph()
@@ -32,10 +48,12 @@ def getGraph(matriks):
     
 
 #Test
-nf = input("Enter file: ")    
-print(getMatriks(nf))
-nx.draw(getGraph(getMatriks(nf)), with_labels=True, font_weight='bold')
-plt.show()
+#nf = input("Enter file: ")    
+#print(getMatriks(nf))
+#nx.draw(getGraph(getMatriks(nf)), with_labels=True, font_weight='bold')
+#plt.show()
+file = input()
+print(getLokasi(file))
 
 """
 G = nx.Graph()
