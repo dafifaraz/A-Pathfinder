@@ -60,7 +60,9 @@ print(getMatriks(nf))
 lok = input("Masukkan file koordinat node:")
 print(getLokasi(lok))
 pos=nx.get_node_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'pos')
+arc_weight=nx.get_edge_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'weight')
 nx.draw_networkx(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
+nx.draw_networkx_edge_labels(getGraph(getMatriks(nf), getLokasi(lok)), pos, edge_labels=arc_weight)
 plt.show()
 
 """
@@ -78,5 +80,5 @@ G.add_edge(4,5)
 G.add_edge(3,5)
 pos=nx.get_node_attributes(G,'pos')
 nx.draw(G, pos, with_labels=True, font_weight='bold')
-plt.show()
+plt.show(dpi=500)
 """
