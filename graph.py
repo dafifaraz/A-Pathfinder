@@ -9,7 +9,11 @@ def getMatriks(namafile):
         matriks =[]
         for line in data:
             nums = line.split(" ")
-            matriks.append(nums)
+            temp = []
+            for string in nums:
+                val = int(string)
+                temp.append(val)
+            matriks.append(temp)
             #print("Data yang diinput:\n")
             #print(nums)
     return matriks
@@ -18,10 +22,11 @@ def getMatriks(namafile):
 def getGraph(matriks):
     G = nx.Graph()
     for i in range(0, len(matriks)):
-        for j in range(0, len(matriks)):
-            print (j)
+        j = 0
+        while j < len(matriks) and matriks[i][j] != 9999:
             if matriks [i][j] != 0:
-                G.add_edge(i+1,j+1)
+                G.add_edge(i+1,j+1,weight=matriks[i][j])
+            j += 1
     return G
 
     
