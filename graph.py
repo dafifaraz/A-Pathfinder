@@ -71,7 +71,7 @@ def cost(g, h):
 
     Return a list of nodes in a shortest path between source and target
     using the A* ("A-star") algorithm. """
-"""
+
 def a_star_search(G, source, dest):
     # The queue stores priority, node, cost to reach, and parent.
     # Uses Python heapq to keep in priority order.
@@ -93,6 +93,7 @@ def a_star_search(G, source, dest):
                 path.append(node)
                 node = explored[node]
             path.reverse()
+            print(dist)
             return path
 
         if curnode in explored:
@@ -103,10 +104,10 @@ def a_star_search(G, source, dest):
         for neighbor in [n for n in G.neighbors(curnode)]:
             if neighbor in explored:
                 continue
-            g = dist + G.edge[curnode][neighbor]["weight"]
-            h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"]))
-            heappush(queue, (cost(g, h), next(c), neighbor, g, curnode)
-"""   
+            g = dist + G[curnode][neighbor]["weight"]
+            h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"])
+            heappush(queue, (cost(g, h), next(c), neighbor, g, curnode))
+
 if __name__ == '__main__':
    #Test
     nf = input("Masukkan file matriks ketetanggaan: ")
@@ -124,6 +125,7 @@ if __name__ == '__main__':
     plt.show()
     curnode = 1
     print(G.node[curnode]["pos"])
+    print(a_star_search(G, 1, 13))
     """
     G = nx.Graph()
     G.add_node(1, pos=(0,0))
@@ -139,5 +141,5 @@ if __name__ == '__main__':
     G.add_edge(3,5)
     pos=nx.get_node_attributes(G,'pos')
     nx.draw(G, pos, with_labels=True, font_weight='bold')
-    plt.show()
-    """
+    plt.show()"""
+    
