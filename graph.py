@@ -59,7 +59,8 @@ nf = input("Masukkan file matriks ketetanggaan: ")
 print(getMatriks(nf))
 lok = input("Masukkan file koordinat node:")
 print(getLokasi(lok))
-nx.draw(getGraph(getMatriks(nf), getLokasi(lok)), with_labels=True, font_weight='bold')
+pos=nx.get_node_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'pos')
+nx.draw(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
 plt.show()
 
 """
