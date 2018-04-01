@@ -114,7 +114,7 @@ if __name__ == '__main__':
    #Test
     nf = input("Masukkan file matriks ketetanggaan: ")
     M = getMatriks(nf)
-    print(G)
+    print(M)
     lok = input("Masukkan file koordinat node:")
     L = getLokasi(lok)
     print(L)
