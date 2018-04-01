@@ -48,11 +48,11 @@ def getGraph(matriks):
     
 
 #Test
-#nf = input("Enter file: ")    
+#nf = input("Masukkan file matriks ketetanggaan: ")    
 #print(getMatriks(nf))
 #nx.draw(getGraph(getMatriks(nf)), with_labels=True, font_weight='bold')
 #plt.show()
-file = input()
+file = input("Masukkan file koordinat node:")
 print(getLokasi(file))
 
 """
