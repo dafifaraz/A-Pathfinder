@@ -35,10 +35,11 @@ def getLokasi(namafile):
     return matriks
 
 #Menerima input matriks ketetanggan, mengembalikan graf
-def getGraph(matriks):
+def getGraph(matriks, lokasi):
     G = nx.Graph()
     for i in range(0, len(matriks)):
         j = 0
+        G.add_node(i+1, visited=False, pos=lokasi[i])
         while j < len(matriks) and matriks[i][j] != 9999:
             if matriks [i][j] != 0:
                 G.add_edge(i+1,j+1,weight=matriks[i][j])
@@ -48,12 +49,12 @@ def getGraph(matriks):
     
 
 #Test
-#nf = input("Masukkan file matriks ketetanggaan: ")    
-#print(getMatriks(nf))
-#nx.draw(getGraph(getMatriks(nf)), with_labels=True, font_weight='bold')
-#plt.show()
-file = input("Masukkan file koordinat node:")
-print(getLokasi(file))
+nf = input("Masukkan file matriks ketetanggaan: ")    
+print(getMatriks(nf))
+lok = input("Masukkan file koordinat node:")
+print(getLokasi(lok))
+nx.draw(getGraph(getMatriks(nf), getLokasi(lok)), with_labels=True, font_weight='bold')
+plt.show()
 
 """
 G = nx.Graph()
