@@ -71,7 +71,7 @@ def cost(g, h):
 
     Return a list of nodes in a shortest path between source and target
     using the A* ("A-star") algorithm. """
-
+"""
 def a_star_search(G, source, dest):
     # The queue stores priority, node, cost to reach, and parent.
     # Uses Python heapq to keep in priority order.
@@ -100,14 +100,13 @@ def a_star_search(G, source, dest):
 
         explored[curnode] = parent
        
-        print(list(G.neighbors(curnode)))
-        """for neighbor in nblist
+        for neighbor in [n for n in G.neighbors(curnode)]:
             if neighbor in explored:
                 continue
             g = dist + G.edge[curnode][neighbor]["weight"]
             h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"]))
-            heappush(queue, (cost(g, h), next(c), neighbor, g, curnode)"""
-    
+            heappush(queue, (cost(g, h), next(c), neighbor, g, curnode)
+"""   
 if __name__ == '__main__':
    #Test
     nf = input("Masukkan file matriks ketetanggaan: ")
@@ -123,7 +122,8 @@ if __name__ == '__main__':
     nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
     plt.gca().invert_xaxis()
     plt.show()
-
+    curnode = 1
+    print(G.node[curnode]["pos"])
     """
     G = nx.Graph()
     G.add_node(1, pos=(0,0))
