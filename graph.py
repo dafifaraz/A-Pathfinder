@@ -19,17 +19,20 @@ def getGraph(matriks):
     G = nx.Graph()
     for i in range(0, len(matriks)):
         for j in range(0, len(matriks)):
-            if matriks[i][j] != 0:
+            print (j)
+            if matriks [i][j] != 0:
                 G.add_edge(i+1,j+1)
     return G
 
     
 
-
+#Test
 nf = input("Enter file: ")    
 print(getMatriks(nf))
 nx.draw(getGraph(getMatriks(nf)), with_labels=True, font_weight='bold')
+plt.show()
 
+"""
 G = nx.Graph()
 G.add_node(1, pos=(0,0))
 G.add_node(2, pos=(1,5))
@@ -45,3 +48,4 @@ G.add_edge(3,5)
 pos=nx.get_node_attributes(G,'pos')
 nx.draw(G, pos, with_labels=True, font_weight='bold')
 plt.show()
+"""
