@@ -72,7 +72,7 @@ def cost(g, h):
     Return a list of nodes in a shortest path between source and target
     using the A* ("A-star") algorithm. """
 
-    
+"""    
 def a_star_search(G, source, dest):
     # The queue stores priority, node, cost to reach, and parent.
     # Uses Python heapq to keep in priority order.
@@ -108,18 +108,21 @@ def a_star_search(G, source, dest):
             g = dist + G.edge[curnode][neighbor]["weight"]
             h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"]))
             heappush(queue, (cost(g, h), next(c), neighbor, g, curnode))
-    
+"""    
     
 if __name__ == '__main__':
    #Test
-    nf = input("Masukkan file matriks ketetanggaan: ")    
-    print(getMatriks(nf))
+    nf = input("Masukkan file matriks ketetanggaan: ")
+    M = getMatriks(nf)
+    print(G)
     lok = input("Masukkan file koordinat node:")
-    print(getLokasi(lok))
-    pos=nx.get_node_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'pos')
-    arc_weight=nx.get_edge_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'weight')
-    nx.draw_networkx(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
-    nx.draw_networkx_edge_labels(getGraph(getMatriks(nf), getLokasi(lok)), pos, edge_labels=arc_weight)
+    L = getLokasi(lok)
+    print(L)
+    G = getGraph(M, L)
+    pos=nx.get_node_attributes(G,'pos')
+    arc_weight=nx.get_edge_attributes(G,'weight')
+    nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
     plt.show()
 
     """
