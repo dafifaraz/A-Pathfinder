@@ -1,5 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+import math
 
 #Menerima input nama file, mengembalikan matriks ketetanggaan berbobot
 def getMatriks(namafile):
@@ -46,7 +47,12 @@ def getGraph(matriks, lokasi):
             j += 1
     return G
 
-    
+def euclid(now, dest):
+    distance = math.sqrt( ((now[0]-dest[0])**2)+((now[1]-dest[1])**2) )
+    return distance
+
+def cost(g, h):
+    return g + h
 
 #Test
 nf = input("Masukkan file matriks ketetanggaan: ")    
