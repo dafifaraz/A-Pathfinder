@@ -1,16 +1,25 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 
-def inputMatriks(namafile):
+#Menerima input nama file, mengembalikan matriks ketetanggaan berbobot
+def getMatriks(namafile):
     with open(namafile) as file:
         data = file.readlines()
+        matriks = []
         for line in data:
             nums = line.split(" ")
-            print("Data yang diinput:\n")
-            print(nums)
+            matriks.append(nums)
+            #print("Data yang diinput:\n")
+            #print(nums)
+    return matriks
 
-nf = input("Enter file: ")        
-inputMatriks(nf)
+def getGraph(matriks):
+    G = nx.Graph()
+    
+
+
+nf = input("Enter file: ")    
+print(getMatriks(nf))
 
 G = nx.Graph()
 G.add_node(1, pos=(0,0))
