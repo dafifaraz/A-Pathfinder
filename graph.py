@@ -56,7 +56,7 @@ def euclid(now, dest):
 def cost(g, h):
     return g + h
 
-class PriorityQueue:
+"""class PriorityQueue:
     def __init__(self):
         self.elements = []
     
@@ -69,39 +69,46 @@ class PriorityQueue:
     def get(self):
         return heapq.heappop(self.elements)[1]
 
-def a_star_search(G, start, goal):
-    visited = []
-    path = []
-    frontier = PriorityQueue()
-    frontier.put(start, 0)
-    came_from = {}
-    cost_so_far = {}
-    came_from[start] = None
-    cost_so_far[start] = 0
+    Return a list of nodes in a shortest path between source and target
+    using the A* ("A-star") algorithm. """
+
     
-    while not frontier.empty():
-        current = frontier.get()
-        
-        if current == goal:
-            path.append(current)
-            break
-        elif current in visited:
+def a_star_search(G, source, dest):
+    # The queue stores priority, node, cost to reach, and parent.
+    # Uses Python heapq to keep in priority order.
+    # Add a counter to the queue to prevent the underlying heap from
+    # attempting to compare the nodes themselves. The hash breaks ties in the
+    # priority and is guarenteed unique for all nodes in the graph.
+    c = count()
+    queue = [(0, next(c), source, 0, None)]
+    # Maps explored nodes to parent closest to the source.
+    explored = {}
+    while queue:
+        # Pop the smallest item from queue.
+        _, __, curnode, dist, parent = heappop(queue)
+
+        if curnode == dest:
+            path = [curnode]
+            node = parent
+            while node is not None:
+                path.append(node)
+                node = explored[node]
+            path.reverse()
+            return path
+
+        if curnode in explored:
             continue
-        else:
-            nblist = G.neighbors(current)
-            visited.append(current)
-            path.append(current)
-            for next in graph.neighbors(current):
-                new_cost = cost_so_far[current] + graph.cost(current, next)
-                if next not in cost_so_far or new_cost < cost_so_far[next]:
-                    cost_so_far[next] = new_cost
-                    priority = new_cost + heuristic(goal, next)
-                    frontier.put(next, priority)
-                    came_from[next] = current
-        
-    return came_from, cost_so_far
 
-
+        explored[curnode] = parent
+        nblist = G.neighbors(curnode)
+        for neighbor in nblist
+            if neighbor in explored:
+                continue
+            g = dist + G.edge[curnode][neighbor]["weight"]
+            h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"]))
+        push(queue, (g + h, next(c), neighbor, ncost, curnode))
+    
+    
 if __name__ == '__main__':
    #Test
     nf = input("Masukkan file matriks ketetanggaan: ")    
