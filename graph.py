@@ -100,15 +100,14 @@ def a_star_search(G, source, dest):
             continue
 
         explored[curnode] = parent
-        nblist = []
-        nblist = list(G.neighbors(curnode))
-        for n in nblist
-            if n in explored:
+       
+        print(list(G.neighbors(curnode)))
+        """for neighbor in nblist
+            if neighbor in explored:
                 continue
             g = dist + G.edge[curnode][neighbor]["weight"]
             h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"]))
-            heappush(queue, (cost(g, h), next(c), neighbor, g, curnode))
-    
+            heappush(queue, (cost(g, h), next(c), neighbor, g, curnode)"""
     
 if __name__ == '__main__':
    #Test
