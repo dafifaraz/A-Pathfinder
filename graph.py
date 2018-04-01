@@ -100,23 +100,18 @@ def a_star_search(G, start, goal):
                     came_from[next] = current
         
     return came_from, cost_so_far
-#Test
-nf = input("Masukkan file matriks ketetanggaan: ")    
-print(getMatriks(nf))
-lok = input("Masukkan file koordinat node:")
-print(getLokasi(lok))
-pos=nx.get_node_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'pos')
-nx.draw_networkx(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
-plt.show()
+
 
 if __name__ == '__main__':
-    #Test
+   #Test
     nf = input("Masukkan file matriks ketetanggaan: ")    
     print(getMatriks(nf))
     lok = input("Masukkan file koordinat node:")
     print(getLokasi(lok))
     pos=nx.get_node_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'pos')
-    nx.draw(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
+    arc_weight=nx.get_edge_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'weight')
+    nx.draw_networkx(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
+    nx.draw_networkx_edge_labels(getGraph(getMatriks(nf), getLokasi(lok)), pos, edge_labels=arc_weight)
     plt.show()
 
     """
