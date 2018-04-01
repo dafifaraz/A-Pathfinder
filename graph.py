@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 def getMatriks(namafile):
     with open(namafile) as file:
         data = file.readlines()
-        matriks = []
+        data = [x.strip() for x in data]
+        matriks =[]
         for line in data:
             nums = line.split(" ")
             matriks.append(nums)
@@ -13,13 +14,21 @@ def getMatriks(namafile):
             #print(nums)
     return matriks
 
+#Menerima input matriks ketetanggan, mengembalikan graf
 def getGraph(matriks):
     G = nx.Graph()
+    for i in range(0, len(matriks)):
+        for j in range(0, len(matriks)):
+            if matriks[i][j] != 0:
+                G.add_edge(i+1,j+1)
+    return G
+
     
 
 
 nf = input("Enter file: ")    
 print(getMatriks(nf))
+nx.draw(getGraph(getMatriks(nf)), with_labels=True, font_weight='bold')
 
 G = nx.Graph()
 G.add_node(1, pos=(0,0))
