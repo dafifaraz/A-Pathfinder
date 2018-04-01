@@ -40,7 +40,7 @@ def getGraph(matriks, lokasi):
     G = nx.Graph()
     for i in range(0, len(matriks)):
         j = 0
-        G.add_node(i+1, visited=False, pos=lokasi[i])
+        G.add_node(i+1, pos=lokasi[i])
         while j < len(matriks) and matriks[i][j] != 9999:
             if matriks [i][j] != 0:
                 G.add_edge(i+1,j+1,weight=matriks[i][j])
@@ -60,7 +60,7 @@ print(getMatriks(nf))
 lok = input("Masukkan file koordinat node:")
 print(getLokasi(lok))
 pos=nx.get_node_attributes(getGraph(getMatriks(nf), getLokasi(lok)),'pos')
-nx.draw(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
+nx.draw_networkx(getGraph(getMatriks(nf), getLokasi(lok)), pos, with_labels=True, font_weight='bold')
 plt.show()
 
 """
