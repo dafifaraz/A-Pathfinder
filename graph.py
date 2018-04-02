@@ -21,6 +21,7 @@ def getMatriks(namafile):
             #print(nums)
     return matriks
 
+#Menerima input nama file, mengembalikan matriks berisi koordinat simpul
 def getLokasi(namafile):
     with open(namafile) as file:
         data = file.readlines()
@@ -49,43 +50,28 @@ def getGraph(matriks, lokasi):
             j += 1
     return G
 
+#Menerima koordinat simpul terkini dan koordinat simpul tujuan, mengembalikan jarak heuristic
 def euclid(now, dest):
     distance = math.sqrt( ((now[0]-dest[0])**2)+((now[1]-dest[1])**2) )
     return distance
 
+#Menerima cost so far dan estimated heuristic cost to goal, mengembalikan total estimated cost
 def cost(g, h):
     return g + h
 
-"""class PriorityQueue:
-    def __init__(self):
-        self.elements = []
-    
-    def empty(self):
-        return len(self.elements) == 0
-    
-    def put(self, item, priority):
-        heapq.heappush(self.elements, (priority, item))
-    
-    def get(self):
-        return heapq.heappop(self.elements)[1]
-
-    Return a list of nodes in a shortest path between source and target
-    using the A* ("A-star") algorithm. """
-
+#Algoritma shortest-pathfinding
 def a_star_search(G, source, dest):
-    # The queue stores priority, node, cost to reach, and parent.
+    # queue menyimpan priority, node, cost to reach, and parent.
     # Uses Python heapq to keep in priority order.
-    # Add a counter to the queue to prevent the underlying heap from
-    # attempting to compare the nodes themselves. The hash breaks ties in the
-    # priority and is guarenteed unique for all nodes in the graph.
     c = count()
     queue = [(0, next(c), source, 0, None)]
     # Maps explored nodes to parent closest to the source.
     explored = {}
     while queue:
-        # Pop the smallest item from queue.
+        # Pop the smallest item dari queue
         _, __, curnode, dist, parent = heappop(queue)
 
+        #Cek apakah sudah sampai ke simpul goal
         if curnode == dest:
             path = [curnode]
             node = parent
@@ -93,14 +79,16 @@ def a_star_search(G, source, dest):
                 path.append(node)
                 node = explored[node]
             path.reverse()
-            print(dist)
+            print("Jarak tempuh = ", dist)
             return path
 
+        #Jika node sudah dikunjungi maka abaikan
         if curnode in explored:
             continue
 
         explored[curnode] = parent
-       
+
+        #Kunjungi semua tetangga dari simpul 
         for neighbor in [n for n in G.neighbors(curnode)]:
             if neighbor in explored:
                 continue
