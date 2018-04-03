@@ -3,6 +3,7 @@ from itertools import count
 import networkx as nx
 import matplotlib.pyplot as plt
 import math
+import json
 
 #Menerima input nama file, mengembalikan matriks ketetanggaan berbobot
 def getMatriks(namafile):
@@ -17,8 +18,7 @@ def getMatriks(namafile):
                 val = int(string)
                 temp.append(val)
             matriks.append(temp)
-            #print("Data yang diinput:\n")
-            #print(nums)
+        
     return matriks
 
 #Menerima input nama file, mengembalikan matriks berisi koordinat simpul
@@ -66,6 +66,15 @@ def drawGraph():
     plt.gca().invert_xaxis()
     input("-----Program akan menampilkan graf, tekan ENTER untuk melanjutkan-----")
     plt.show()
+
+def sendToJson(G, path):
+    d = {"path":[{"loc":G.node[n]["pos"]} for n in path]}
+    j = json.dumps(d, indent=4)
+    f = open('path.json', 'w')
+    print(j, file=f)
+    f.close()
+        
+
 
 #Algoritma shortest-pathfinding
 def a_star_search(G, source, dest):
@@ -124,3 +133,4 @@ if __name__ == '__main__':
         else:
             G.remove_node(i)
     drawGraph()
+    sendToJson(G, path)
