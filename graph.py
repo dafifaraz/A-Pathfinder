@@ -112,7 +112,7 @@ if __name__ == '__main__':
     nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
     plt.gca().invert_xaxis()
     plt.show()
-    start = int(input("Masukkan titik start: "))
+    start = int(input("Masukkan titik start: ))
     end = int(input("Masukkan titik end: ))
     curnode = start
     #print(G.node[curnode]["pos"])
