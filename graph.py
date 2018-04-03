@@ -114,6 +114,19 @@ if __name__ == '__main__':
     plt.show()
     start = int(input("Masukkan titik start: "))
     end = int(input("Masukkan titik end: "))
-    curnode = start
-    #print(G.node[curnode]["pos"])
-    print(a_star_search(G, start, end))
+    #print(a_star_search(G, start, end))
+    path = a_star_search(G, start, end)
+    print(path)
+    count = len(list(G.nodes))
+    for i in range(1,count+1):
+        if i in path:
+            continue
+        else:
+            G.remove_node(i)
+    print(list(G.node))
+    pos=nx.get_node_attributes(G,'pos')
+    arc_weight=nx.get_edge_attributes(G,'weight')
+    nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
+    plt.gca().invert_xaxis()
+    plt.show()
