@@ -56,22 +56,6 @@ def euclid(now, dest):
 def cost(g, h):
     return g + h
 
-"""class PriorityQueue:
-    def __init__(self):
-        self.elements = []
-    
-    def empty(self):
-        return len(self.elements) == 0
-    
-    def put(self, item, priority):
-        heapq.heappush(self.elements, (priority, item))
-    
-    def get(self):
-        return heapq.heappop(self.elements)[1]
-
-    Return a list of nodes in a shortest path between source and target
-    using the A* ("A-star") algorithm. """
-
 def a_star_search(G, source, dest):
     # The queue stores priority, node, cost to reach, and parent.
     # Uses Python heapq to keep in priority order.
@@ -117,29 +101,15 @@ if __name__ == '__main__':
     L = getLokasi(lok)
     #print(L)
     G = getGraph(M, L)
+    
     pos=nx.get_node_attributes(G,'pos')
     arc_weight=nx.get_edge_attributes(G,'weight')
     nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
     plt.gca().invert_xaxis()
     plt.show()
-    curnode = 1
-    print(G.node[curnode]["pos"])
-    print(a_star_search(G, 1, 13))
-    """
-    G = nx.Graph()
-    G.add_node(1, pos=(0,0))
-    G.add_node(2, pos=(1,5))
-    G.add_node(3, pos=(2,5))
-    G.add_node(4, pos=(2,7))
-    G.add_node(5, pos=(3,5))
-
-    G.add_edge(1,2)
-    G.add_edge(2,3)
-    G.add_edge(1,3)
-    G.add_edge(4,5)
-    G.add_edge(3,5)
-    pos=nx.get_node_attributes(G,'pos')
-    nx.draw(G, pos, with_labels=True, font_weight='bold')
-    plt.show()"""
-    
+    start = int(input("Masukkan titik start: "))
+    end = int(input("Masukkan titik end: ))
+    curnode = start
+    #print(G.node[curnode]["pos"])
+    print(a_star_search(G, start, end))
