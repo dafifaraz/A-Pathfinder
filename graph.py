@@ -34,8 +34,7 @@ def getLokasi(namafile):
                 val = float(string)
                 temp.append(val)
             matriks.append(temp)
-            #print("Data yang diinput:\n")
-            #print(nums)
+
     return matriks
 
 #Menerima input matriks ketetanggan, mengembalikan graf
@@ -65,7 +64,7 @@ def drawGraph():
     nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
     plt.gca().invert_xaxis()
-    temp = input("-----Program akan menampilkan graf, tekan ENTER untuk melanjutkan-----")
+    input("-----Program akan menampilkan graf, tekan ENTER untuk melanjutkan-----")
     plt.show()
 
 #Algoritma shortest-pathfinding
@@ -87,7 +86,7 @@ def a_star_search(G, source, dest):
                 path.append(node)
                 node = explored[node]
             path.reverse()
-            print("Jarak tempuh = ", dist)
+            print(">> Jarak tempuh = ", dist, " meter")
             return path
 
         #Jika node sudah dikunjungi maka abaikan
@@ -116,7 +115,7 @@ if __name__ == '__main__':
     start = int(input(">> Masukkan titik start: "))
     end = int(input(">> Masukkan titik end: "))
     path = a_star_search(G, start, end)
-    print(path)
+    print(">> Path = ", path)
     count = len(list(G.nodes))
     #Menghapus node yang tidak dilewati
     for i in range(1,count+1):
