@@ -59,15 +59,24 @@ def euclid(now, dest):
 def cost(g, h):
     return g + h
 
+def drawGraph():
+    pos=nx.get_node_attributes(G,'pos')
+    arc_weight=nx.get_edge_attributes(G,'weight')
+    nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
+    plt.gca().invert_xaxis()
+    temp = input("-----Program akan menampilkan graf, tekan ENTER untuk melanjutkan-----")
+    plt.show()
+
 #Algoritma shortest-pathfinding
 def a_star_search(G, source, dest):
     # queue menyimpan priority, node, cost to reach, and parent.
     c = count()
     queue = [(0, next(c), source, 0, None)]
-    # Maps explored nodes to parent closest to the source.
+    # Hashmap menyimpan value berupa node parent dari key.
     explored = {}
     while queue:
-        # Pop the smallest item dari queue
+        # Pop node dengan cost terkecil dari queue
         _, __, curnode, dist, parent = heappop(queue)
 
         #Cek apakah sudah sampai ke simpul goal
@@ -95,23 +104,17 @@ def a_star_search(G, source, dest):
             h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"])
             heappush(queue, (cost(g, h), next(c), neighbor, g, curnode))
 
-
 #Program Utama
 if __name__ == '__main__':
-    nf = input("Masukkan file matriks ketetanggaan: ")
+    print("++++++++++++++++++++ Path Finder ++++++++++++++++++++++")
+    nf = input(">> Masukkan file matriks ketetanggaan: ")
     M = getMatriks(nf)
-    lok = input("Masukkan file koordinat node:")
+    lok = input(">> Masukkan file koordinat node:")
     L = getLokasi(lok)
     G = getGraph(M, L)
-    pos=nx.get_node_attributes(G,'pos')
-    arc_weight=nx.get_edge_attributes(G,'weight')
-    nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
-    plt.gca().invert_xaxis()
-    temp = input("Program akan menampilkan graf, tekan ENTER untuk melanjutkan")
-    plt.show()
-    start = int(input("Masukkan titik start: "))
-    end = int(input("Masukkan titik end: "))
+    drawGraph()
+    start = int(input(">> Masukkan titik start: "))
+    end = int(input(">> Masukkan titik end: "))
     path = a_star_search(G, start, end)
     print(path)
     count = len(list(G.nodes))
@@ -121,9 +124,4 @@ if __name__ == '__main__':
             continue
         else:
             G.remove_node(i)
-    pos=nx.get_node_attributes(G,'pos')
-    arc_weight=nx.get_edge_attributes(G,'weight')
-    nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
-    plt.gca().invert_xaxis()
-    plt.show()
+    drawGraph()
