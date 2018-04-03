@@ -62,7 +62,6 @@ def cost(g, h):
 #Algoritma shortest-pathfinding
 def a_star_search(G, source, dest):
     # queue menyimpan priority, node, cost to reach, and parent.
-    # Uses Python heapq to keep in priority order.
     c = count()
     queue = [(0, next(c), source, 0, None)]
     # Maps explored nodes to parent closest to the source.
@@ -96,34 +95,32 @@ def a_star_search(G, source, dest):
             h =  euclid(G.node[curnode]["pos"], G.node[dest]["pos"])
             heappush(queue, (cost(g, h), next(c), neighbor, g, curnode))
 
+
+#Program Utama
 if __name__ == '__main__':
-   #Test
     nf = input("Masukkan file matriks ketetanggaan: ")
     M = getMatriks(nf)
-    #print(M)
     lok = input("Masukkan file koordinat node:")
     L = getLokasi(lok)
-    #print(L)
     G = getGraph(M, L)
-    
     pos=nx.get_node_attributes(G,'pos')
     arc_weight=nx.get_edge_attributes(G,'weight')
     nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
     nx.draw_networkx_edge_labels(G, pos, edge_labels=arc_weight)
     plt.gca().invert_xaxis()
+    temp = input("Program akan menampilkan graf, tekan ENTER untuk melanjutkan")
     plt.show()
     start = int(input("Masukkan titik start: "))
     end = int(input("Masukkan titik end: "))
-    #print(a_star_search(G, start, end))
     path = a_star_search(G, start, end)
     print(path)
     count = len(list(G.nodes))
+    #Menghapus node yang tidak dilewati
     for i in range(1,count+1):
         if i in path:
             continue
         else:
             G.remove_node(i)
-    print(list(G.node))
     pos=nx.get_node_attributes(G,'pos')
     arc_weight=nx.get_edge_attributes(G,'weight')
     nx.draw_networkx(G, pos, with_labels=True, font_weight='bold')
